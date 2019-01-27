@@ -20,7 +20,7 @@ const storage = multer.diskStorage({
 Upload.post(`/uploads`, multer({ storage: storage }).array('file', 20), async (req, res) => {
   // console.log(req.files)
   let files = map(req.files, (file) => {
-    return { url: `${API.HOST}/static/ios/${file.path}` }
+    return { url: `${API.HOST}/static/ios/${file.filename}` }
   })
   let qr_png = qr.image(JSON.stringify(files), { type: 'png', ec_level: 'H', margin: 1, parse_url: true })
   qr_png.pipe(fs.createWriteStream(`src/uploads_qr/${SHA512(JSON.stringify(files)).toString()}.png`))
