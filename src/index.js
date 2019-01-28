@@ -1,4 +1,5 @@
 require('dotenv').config()
+require('@babel/polyfill')
 import path from 'path'
 import express from 'express'
 import compression from 'compression'
