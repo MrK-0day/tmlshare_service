@@ -10,7 +10,7 @@ import { API } from '../../config'
 const Upload = express.Router()
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'src/uploads/')
+    cb(null, 'uploads/')
   },
   filename: function (req, file, cb) {
     cb(null, `${Date.now()}-${file.originalname}`)
@@ -23,7 +23,7 @@ Upload.post(`/uploads`, multer({ storage: storage }).array('file', 20), async (r
     return { url: `${API.HOST}/static/ios/${file.filename}` }
   })
   let qr_png = qr.image(JSON.stringify(files), { type: 'png', ec_level: 'H', margin: 1, parse_url: true })
-  qr_png.pipe(fs.createWriteStream(`src/uploads_qr/${SHA512(JSON.stringify(files)).toString()}.png`))
+  qr_png.pipe(fs.createWriteStream(`uploads_qr/${SHA512(JSON.stringify(files)).toString()}.png`))
   res.json({qr_image: `${API.HOST}/static/images/${SHA512(JSON.stringify(files)).toString()}.png`})
 })
 
