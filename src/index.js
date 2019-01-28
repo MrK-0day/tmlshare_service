@@ -19,6 +19,6 @@ app.use('/static/images', express.static(path.join(__dirname, 'uploads_qr')))
 app.use('/static/ios', express.static(path.join(__dirname, 'uploads')))
 app.use(`/${API.VERSION}`, Upload)
 
-app.listen(process.env.PORT || 80, () => {
-  console.log(`🚀 Server ready at http://localhost:${process.env.PORT}.`)
+app.listen(process.env.PORT || 3001, () => {
+  console.log(`🚀 Server ready at http://localhost:${process.env.PORT || 3001}.`)
 })
